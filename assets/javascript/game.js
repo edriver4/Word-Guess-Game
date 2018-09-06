@@ -9,13 +9,37 @@
         "atlanta",
         "falcons"
     ];
+    var lettersChosen = [];
  // Choosing a random word.
     var word = words[Math.floor(Math.random() * words.length)];
+    console.log(word);
+
+// Created variables that hold references to the places in the HTML of where I want to display things.
+var directionsText = document.getElementById("directions-text");
+var lettersChosenText = document.getElementById("letters-chosen-text");
+var answerArrayText = document.getElementById("answer-array-text");
+// Setup an answer array.
+    var answerArray = [];
+    for (var j = 0; j < word.length; j++) {
+        answerArray[j] = "_";
+    }
+
+// Create variable to keep track of letters that remain to be guessed.
+    var remainingGuesses = word.length;
+
+
 //The user presses a key
 document.onkeyup = function(event){
+    // letterGuess = event.key
     var letterGuess = String.fromCharCode(event.which).toLowerCase()
     console.log('Letter pressed ===>', letterGuess)
-    console.log('This is the event ==>', event)
+    console.log('This is the event ==>', event);
+    lettersChosen.push(letterGuess);
+    if (letterGuess === word) {
+        answerArray.push(letterGuess);
+    }
+    
+    
 }
 //The program verifies that the letter is a letter within that word or if it is not a letter within that word.
 
@@ -35,8 +59,4 @@ document.onkeyup = function(event){
 
     //If the player keeps guessing the incorrect letter the player loses.
 
-    document.onkeyup = function(event){
-        var letterGuess = String.fromCharCode(event.which).toLowerCase()
-        console.log('Letter pressed ===>', letterGuess)
-        console.log('This is the event ==>', event)
-    }
+    
